@@ -23,10 +23,7 @@ public class dinoMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!facingLeft)
-        {
-            
-        }
+        
     }
 
     // Update is called once per frame
