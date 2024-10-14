@@ -10,7 +10,8 @@ public class dinoMovement : MonoBehaviour
     private bool isGrounded;            // To check if the dino is on the ground
     private bool canMoveLeft = true;
     private bool canMoveRight = true;
-
+    private bool movingUp = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -36,9 +37,24 @@ public class dinoMovement : MonoBehaviour
         }
 
         // Jump when the Up Arrow is pressed and dino is grounded
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded && rb.velocity.y == 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);  // Apply jump force
+        }
+
+        if (rb.velocity.y > 0)
+        {
+            movingUp = true;
+        }
+        else
+        {
+            movingUp = false;
+        }
+
+        // Raycasting to check for platforms above
+        if (movingUp)
+        {
+            // TODO
         }
     }
 
@@ -65,6 +81,16 @@ public class dinoMovement : MonoBehaviour
                 canMoveRight = false;
             }
         }
+
+        // Check if dino is jumping up through platform collider or landing on top
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            if (!movingUp)
+            {
+                // if player is landing on the platform
+                isGrounded = true;  // reset grounded status so player can jump off platform
+            }
+        }
     }
 
     // Check if the dino is no longer touching the ground
@@ -80,6 +106,11 @@ public class dinoMovement : MonoBehaviour
         {
             canMoveRight = true;
             canMoveLeft = true;
+        }
+
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            //Physics2D.IgnoreCollision(collision.collider, rb.GetComponent<PolygonCollider2D>(), false);
         }
     }
 }
