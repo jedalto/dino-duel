@@ -50,12 +50,6 @@ public class dinoMovement : MonoBehaviour
         {
             movingUp = false;
         }
-
-        // Raycasting to check for platforms above
-        if (movingUp)
-        {
-            // TODO
-        }
     }
 
     // Check if the dino is touching the ground
@@ -85,11 +79,7 @@ public class dinoMovement : MonoBehaviour
         // Check if dino is jumping up through platform collider or landing on top
         if (collision.gameObject.CompareTag("Platform"))
         {
-            if (!movingUp)
-            {
-                // if player is landing on the platform
-                isGrounded = true;  // reset grounded status so player can jump off platform
-            }
+            isGrounded = true;  // reset grounded status so player can jump off platform
         }
     }
 
@@ -106,11 +96,6 @@ public class dinoMovement : MonoBehaviour
         {
             canMoveRight = true;
             canMoveLeft = true;
-        }
-
-        if (collision.gameObject.CompareTag("Platform"))
-        {
-            //Physics2D.IgnoreCollision(collision.collider, rb.GetComponent<PolygonCollider2D>(), false);
         }
     }
 }
