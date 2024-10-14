@@ -18,12 +18,15 @@ public class dinoMovement : MonoBehaviour
     private bool canMoveLeft = true;
     private bool canMoveRight = true;
     private bool movingUp = false;
-    private bool facingLeft = true;
+    public bool facingLeft = true;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (!facingLeft)
+        {
+            
+        }
     }
 
     // Update is called once per frame
