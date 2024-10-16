@@ -11,15 +11,20 @@ public class dinoMovement : MonoBehaviour
     private bool isGrounded;            // To check if the dino is on the ground
 
     // move keys for each dino
-    public KeyCode moveLeftKey;  // Default for player 2 (WAD keys)
-    public KeyCode moveRightKey;
-    public KeyCode jumpKey;
+    public KeyCode moveLeftKey;  // key to move left
+    public KeyCode moveRightKey;  // key to move right
+    public KeyCode jumpKey;  // key to jump
+    public KeyCode attackKey;  // key to shoot
 
     private bool canMoveLeft = true;
     private bool canMoveRight = true;
     private bool movingUp = false;
     public bool facingLeft = true;
-    
+
+    public GameObject laserBulletPrefab;   // Reference to the bullet prefab
+    public Transform gunPoint;             // Where the bullet should be spawned
+    public float bulletSpeed = 10f;        // Speed of the bullet
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,12 +71,6 @@ public class dinoMovement : MonoBehaviour
             FlipSprite();
         }
 
-        // Jumping
-        if (isGrounded && Input.GetKeyDown(jumpKey))
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
-
         // Jump when the Up Arrow is pressed and dino is grounded
         if (Input.GetKeyDown(jumpKey) && isGrounded && rb.velocity.y == 0)
         {
@@ -85,6 +84,11 @@ public class dinoMovement : MonoBehaviour
         else
         {
             movingUp = false;
+        }
+
+        if (Input.GetKeyDown(attackKey))
+        {
+            Attack();
         }
     }
 
@@ -151,5 +155,28 @@ public class dinoMovement : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    // attack method (just laser gun attack for now)
+    void Attack()
+    {
+        // Instantiate bullet at gun's position and direction
+        GameObject bullet = Instantiate(laserBulletPrefab, gunPoint.position, gunPoint.rotation);
+
+        // Get Rigidbody2D component from the bullet and set its velocity
+        Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+
+        // Check if dino is facing left or right and apply velocity accordingly
+        if (facingLeft)
+        {
+            bulletRb.velocity = -transform.right * bulletSpeed;  // Move left
+        }
+        else
+        {
+            bulletRb.velocity = transform.right * bulletSpeed;  // Move right
+        }
+
+        // Destroy bullet after 3 seconds to clean up
+        Destroy(bullet, 2f);
     }
 }
