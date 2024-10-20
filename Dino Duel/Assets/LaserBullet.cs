@@ -16,18 +16,22 @@ public class LaserBullet : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider2D hitInfo)
+    
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (hitInfo.CompareTag("Dino"))  // when hits Dino plyer --> presumabley friendly fire?
+        if (collision.CompareTag("Dino"))  // when hits Dino plyer --> presumabley friendly fire?
         {
-            // TODO:: subtract health from the player or trigger another event
             Debug.Log("Hit player!");
+            
 
-            // Eventually, can reduce health --> something like:
-            // PlayerHealth playerHealth = hitInfo.GetComponent<PlayerHealth>();
-            // playerHealth.TakeDamage(damageAmount);
+            DinoHealth health = collision.GetComponent<DinoHealth>();  // Reference to DinoHealth script
+            health.TakeDamage(10);
+            //if (health != null)
+            //{
+            //    health.TakeDamage(10);  // Apply damage when hit by LaserBullet
+            //}
 
             Destroy(gameObject); // Destroy the bullet after impact
         }
-    }
+    }  
 }

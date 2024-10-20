@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 8677353325717524482}
   - component: {fileID: 2656814598131840553}
   - component: {fileID: 7672468661912070741}
-  - component: {fileID: -28919558659214344}
+  - component: {fileID: 5005964003512563786}
   m_Layer: 0
   m_Name: laserBullet
-  m_TagString: Untagged
+  m_TagString: LaserBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -111,7 +111,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!70 &7672468661912070741
@@ -149,7 +149,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.14, y: 0.16}
   m_Direction: 1
---- !u!114 &-28919558659214344
+--- !u!114 &5005964003512563786
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

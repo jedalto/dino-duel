@@ -114,22 +114,36 @@ public class dinoMovement : MonoBehaviour
                 // Hit from right side of dino, block right movement
                 canMoveRight = false;
             }
-
-            if (collision.gameObject.CompareTag("Dino"))
-            {
-                if (transform.position.y > collision.transform.position.y)
-                {
-                    isGrounded = true;  // Treat the other dino as ground
-                }
-            }
         }
 
-        // Check if dino is jumping up through platform collider or landing on top
+        // Allow dinos to jump on each other's heads
+        if (collision.gameObject.CompareTag("Dino"))
+        {
+            if (transform.position.y > collision.transform.position.y)
+            {
+                isGrounded = true;  // Treat the other dino as ground
+            }
+        } 
+
+        // Check if dino is standing on a platform
         if (collision.gameObject.CompareTag("Platform"))
         {
             isGrounded = true;  // reset grounded status so player can jump off platform
         }
     }
+
+    /*private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Check if dino is hit by laser bullet
+        if (collision.gameObject.CompareTag("LaserBullet"))
+        {
+            DinoHealth health = GetComponent<DinoHealth>();  // Reference to DinoHealth script
+            if (health != null)
+            {
+                health.TakeDamage(10);  // Apply damage when hit by LaserBullet
+            }
+        }
+    }*/
 
     // Check if the dino is no longer touching the ground
     private void OnCollisionExit2D(Collision2D collision)
