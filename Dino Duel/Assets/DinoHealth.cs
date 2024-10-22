@@ -7,7 +7,7 @@ public class DinoHealth : MonoBehaviour
 {
     public int maxHealth = 100;       // Max health of the dino
     public int currentHealth;        // Dino's current health
-    public float sliderSpeed = .1f;
+    public float sliderSpeed = .3f;
 
     public Slider healthSlider;       // UI element to display health
 

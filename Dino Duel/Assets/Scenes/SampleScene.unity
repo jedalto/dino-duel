@@ -1240,7 +1240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  sliderSpeed: 0.2
+  sliderSpeed: 0.3
   healthSlider: {fileID: 1550582654}
 --- !u!1 &1033840486
 GameObject:
@@ -1792,7 +1792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  sliderSpeed: 0.2
+  sliderSpeed: 0.3
   healthSlider: {fileID: 1171330476}
 --- !u!1 &1399647300
 GameObject:
