@@ -8,13 +8,13 @@ public class dinoMovement : MonoBehaviour
     public Rigidbody2D rb;              // ref to RigidBody2D component
     public float moveSpeed = 5f;        // Speed at which the dino moves
     public float jumpForce = 10f;       // Force applied for jumping
-    private bool isGrounded;            // To check if the dino is on the ground
+    public bool isGrounded = false;            // To check if the dino is on the ground
 
     // move keys for each dino
-    public KeyCode moveLeftKey;  // key to move left
-    public KeyCode moveRightKey;  // key to move right
-    public KeyCode jumpKey;  // key to jump
-    public KeyCode attackKey;  // key to shoot
+    public KeyCode moveLeftKey;     // key to move left
+    public KeyCode moveRightKey;    // key to move right
+    public KeyCode jumpKey;         // key to jump
+    public KeyCode attackKey;       // key to shoot
 
     private bool canMoveLeft = true;
     private bool canMoveRight = true;
@@ -25,40 +25,55 @@ public class dinoMovement : MonoBehaviour
     public Transform gunPoint;             // Where the bullet should be spawned
     public float bulletSpeed = 10f;        // Speed of the bullet
 
+    Animator animator;
+    bool isRunning = false;
+    bool isJumping = false;
+
+    // variables used for raycast --> makes isGrounded more accurate than just using collisions
+    public LayerMask groundLayer;           // specifies ground layers
+    public Transform groundCheck;           // groundcheck point
+    public float groundCheckRadius = 0.1f;  // radius for groundchecking with raycast
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         MoveDino();
+
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        // animation conditions:
+        animator.SetBool("IsRunning", isRunning);
+        
+        animator.SetBool("Jump", (!isGrounded));
     }
 
     void MoveDino()
     {
-        float moveDirection;
-        if (facingLeft)
-            moveDirection = -1f;
-        else moveDirection = 0f;
+        float moveDirection = 0f;
 
-        // Handle movement with LeftArrow and RightArrow keys
         if (Input.GetKey(moveLeftKey) && canMoveLeft)
         {
             rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);  // Move left
             moveDirection = -1f;
+            isRunning = true;
         }
         else if (Input.GetKey(moveRightKey) && canMoveRight)
         {
             rb.velocity = new Vector2(moveSpeed, rb.velocity.y);  // Move right
             moveDirection = 1f;
+            isRunning = true;
         }
         else
         {
             // If no key is pressed, stop horizontal movement
             rb.velocity = new Vector2(0, rb.velocity.y);
+            isRunning = false;
         }
 
         // flip sprite based on movement direction
@@ -71,21 +86,14 @@ public class dinoMovement : MonoBehaviour
             FlipSprite();
         }
 
-        // Jump when the Up Arrow is pressed and dino is grounded
-        if (Input.GetKeyDown(jumpKey) && isGrounded && rb.velocity.y == 0)
+        // Jump when the jump key is pressed and dino is grounded
+        if (Input.GetKeyDown(jumpKey) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);  // Apply jump force
+            isGrounded = false;
         }
 
-        if (rb.velocity.y > 0)
-        {
-            movingUp = true;
-        }
-        else
-        {
-            movingUp = false;
-        }
-
+        // Handle attack input
         if (Input.GetKeyDown(attackKey))
         {
             Attack();
@@ -137,19 +145,6 @@ public class dinoMovement : MonoBehaviour
             isGrounded = true;  // reset grounded status so player can jump off platform
         }
     }
-
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Check if dino is hit by laser bullet
-        if (collision.gameObject.CompareTag("LaserBullet"))
-        {
-            DinoHealth health = GetComponent<DinoHealth>();  // Reference to DinoHealth script
-            if (health != null)
-            {
-                health.TakeDamage(10);  // Apply damage when hit by LaserBullet
-            }
-        }
-    }*/
 
     // Check if the dino is no longer touching the ground
     private void OnCollisionExit2D(Collision2D collision)
