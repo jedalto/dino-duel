@@ -149,7 +149,7 @@ public class dinoMovement : MonoBehaviour
     // Check if the dino is no longer touching the ground
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag ("Rock"))
         {
             isGrounded = false;  // Dino is not on the ground
         }
