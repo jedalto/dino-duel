@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 84106103}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.564, y: 0.21, z: 0}
+  m_LocalPosition: {x: -0.564, y: 0.204, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1066,6 +1066,7 @@ GameObject:
   - component: {fileID: 999641201}
   - component: {fileID: 999641202}
   - component: {fileID: 999641203}
+  - component: {fileID: 999641204}
   m_Layer: 6
   m_Name: GreenDino
   m_TagString: Dino
@@ -1242,6 +1243,27 @@ MonoBehaviour:
   currentHealth: 0
   sliderSpeed: 0.3
   healthSlider: {fileID: 1550582654}
+--- !u!95 &999641204
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999641196}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5b989dc74a2dc3e41ad2c6b9d2dbf9a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1033840486
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,6 +1640,7 @@ GameObject:
   - component: {fileID: 1339373520}
   - component: {fileID: 1339373525}
   - component: {fileID: 1339373526}
+  - component: {fileID: 1339373527}
   m_Layer: 6
   m_Name: BlueDino
   m_TagString: Dino
@@ -1794,6 +1817,27 @@ MonoBehaviour:
   currentHealth: 0
   sliderSpeed: 0.3
   healthSlider: {fileID: 1171330476}
+--- !u!95 &1339373527
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339373519}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 733c50aab507eb14d8c9f7bb910a10d0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1399647300
 GameObject:
   m_ObjectHideFlags: 0
@@ -2373,7 +2417,7 @@ Transform:
   m_GameObject: {fileID: 1986378137}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.59, y: 0.22, z: 0}
+  m_LocalPosition: {x: -0.5900002, y: 0.22, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
