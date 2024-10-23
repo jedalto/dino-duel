@@ -130,6 +130,12 @@ public class dinoMovement : MonoBehaviour
         {
             isGrounded = true;  // reset grounded status so player can jump off platform
         }
+
+        //Check if dino is standing on a rock
+        if (collision.gameObject.CompareTag("Rock"))
+        {
+            isGrounded = true;  // reset grounded status so player can jump off platform
+        }
     }
 
     /*private void OnTriggerEnter2D(Collider2D collision)

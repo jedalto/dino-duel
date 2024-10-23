@@ -33,5 +33,9 @@ public class LaserBullet : MonoBehaviour
 
             Destroy(gameObject); // Destroy the bullet after impact
         }
+
+        if(collision.CompareTag("Rock")){ // when bullet hits rock
+            Destroy(gameObject); //Destroy the bullet after impact
+        }
     }  
 }
