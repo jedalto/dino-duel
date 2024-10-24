@@ -1880,7 +1880,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   playerNumber: 2
-  sliderSpeed: 0.3
+  sliderSpeed: 50
   healthSlider: {fileID: 1550582654}
 --- !u!95 &999641204
 Animator:
@@ -2471,7 +2471,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   playerNumber: 1
-  sliderSpeed: 0.3
+  sliderSpeed: 50
   healthSlider: {fileID: 1171330476}
 --- !u!95 &1339373527
 Animator:

@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class DinoHealth : MonoBehaviour
 {
-    public int maxHealth = 100;       // Max health of the dino
-    public int currentHealth;        // Dino's current health
+    public int maxHealth = 100;         // Max health of the dino
+    public int currentHealth;           // Dino's current health
     public int playerNumber;
-    public float sliderSpeed = .3f;
+    public float sliderSpeed = 50f;
+    public Slider healthSlider;         //UI element to display dino health
+    private float targetSliderValue;
 
-
-    public Slider healthSlider;       // UI element to display health
     Animator animator;
 
     private bool isInvulnerable = false;
@@ -20,9 +20,15 @@ public class DinoHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;      // Set starting health to max
-        UpdateHealthUI();               // Initialize health display
-        SetSliderMaxValue();            // Initialize health bar value
+        currentHealth = maxHealth;
+        targetSliderValue = maxHealth;  // Initialize target value first
+
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = maxHealth;
+            healthSlider.value = maxHealth;
+        }
+
         animator = GetComponent<Animator>();
         movementScript = GetComponent<dinoMovement>();
     }
@@ -40,8 +46,7 @@ public class DinoHealth : MonoBehaviour
 
         currentHealth -= damage;      // Reduce health by damage amount
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);  // Prevent health from going below 0
-
-        UpdateHealthUI();             // Update health bar
+        targetSliderValue = currentHealth;  // set target value for slider
 
         if (currentHealth <= 0)
         {
@@ -54,7 +59,9 @@ public class DinoHealth : MonoBehaviour
     {
         if (healthSlider != null)
         {
-            healthSlider.value = Mathf.MoveTowards(healthSlider.value, currentHealth, sliderSpeed);
+            // smoothly move the slider toward the target value
+            // hopefully this way is more consistent with deltaTime
+            healthSlider.value = Mathf.MoveTowards(healthSlider.value, targetSliderValue, sliderSpeed * Time.deltaTime);
         }
         else
         {
@@ -97,16 +104,16 @@ public class DinoHealth : MonoBehaviour
         {
             healthSlider.maxValue = maxHealth;  // Set the slider's max value
             healthSlider.value = currentHealth;  // Update the slider's value
+            targetSliderValue = currentHealth;  // Init target value
         }
     }
 
     // will be able to change maximum health of dinos in future (if we implement powerups, etc)
     public void SetMaxHealth(int newMaxHealth)
     {
-        int oldHealth = currentHealth;
         maxHealth = newMaxHealth;       // Update max health
         SetSliderMaxValue();             // Update the slider's max value
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Ensure current health is within new limits
-        UpdateHealthUI();                // Update health display
+        targetSliderValue = currentHealth;  // Update target value
     }
 }
