@@ -7,9 +7,12 @@ public class DinoHealth : MonoBehaviour
 {
     public int maxHealth = 100;       // Max health of the dino
     public int currentHealth;        // Dino's current health
+    public int playerNumber;
     public float sliderSpeed = .3f;
 
+
     public Slider healthSlider;       // UI element to display health
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +20,7 @@ public class DinoHealth : MonoBehaviour
         currentHealth = maxHealth;      // Set starting health to max
         UpdateHealthUI();               // Initialize health display
         SetSliderMaxValue();            // Initialize health bar value
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -54,7 +58,10 @@ public class DinoHealth : MonoBehaviour
     // Handle the dino's death
     void DinoDeath()
     {
-        // Logic for dino death, like playing an animation or respawning
+        // Logic for dino death, playing an animation
+        animator.SetTrigger("Death");
+
+        GameManager.Instance.PlayerDied(playerNumber); // Pass player number (1 or 2)
         Debug.Log("Dino is dead!");
     }
 
