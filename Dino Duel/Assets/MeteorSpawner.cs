@@ -15,7 +15,9 @@ public class MeteorSpawner : MonoBehaviour
 
     private IEnumerator DropMeteors()
     {
-        while (true)  // Infinite loop for continuous dropping
+        yield return new WaitForSeconds(20f);
+
+        while (elapsedTime < 20f)  // Infinite loop for continuous dropping
         {
             // Instantiate a meteor at a random position along the x-axis
             Vector3 spawnPosition = new Vector3(Random.Range(-5f, 5f), dropHeight, 0);  // Adjust range as needed
