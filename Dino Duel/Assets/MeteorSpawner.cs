@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeteorSpawner : MonoBehaviour
 {
     public GameObject meteorPrefab;  // Assign your meteor prefab in the Inspector
-    public float dropInterval = 3f;  // Time between each meteor drop
+    public float dropInterval = 5f;  // Time between each meteor drop
     public float dropHeight = 0f;    // Height from which the meteors drop
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,7 @@ public class MeteorSpawner : MonoBehaviour
 
     public IEnumerator DropMeteors()
     {
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(5f);
 
         while (true)  // Infinite loop for continuous dropping
         {
