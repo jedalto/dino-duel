@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class dinoMovement : MonoBehaviour
 {
@@ -34,10 +38,18 @@ public class dinoMovement : MonoBehaviour
     public Transform groundCheck;           // groundcheck point
     public float groundCheckRadius = 0.1f;  // radius for groundchecking with raycast
 
+    // pause variables
+    public bool isPaused = false;
+    Text pause;
+    Text quit;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+
+        pause = GameObject.Find("Pause").GetComponent<Text>();
+        quit = GameObject.Find("Quit").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -57,13 +69,13 @@ public class dinoMovement : MonoBehaviour
     {
         float moveDirection = 0f;
 
-        if (Input.GetKey(moveLeftKey) && canMoveLeft)
+        if (Input.GetKey(moveLeftKey) && canMoveLeft && !isPaused)
         {
             rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);  // Move left
             moveDirection = -1f;
             isRunning = true;
         }
-        else if (Input.GetKey(moveRightKey) && canMoveRight)
+        else if (Input.GetKey(moveRightKey) && canMoveRight && !isPaused)
         {
             rb.velocity = new Vector2(moveSpeed, rb.velocity.y);  // Move right
             moveDirection = 1f;
@@ -77,26 +89,51 @@ public class dinoMovement : MonoBehaviour
         }
 
         // flip sprite based on movement direction
-        if (moveDirection > 0 && facingLeft)
+        if (moveDirection > 0 && facingLeft && !isPaused)
         {
             FlipSprite();
         }
-        else if (moveDirection < 0 && !facingLeft)
+        else if (moveDirection < 0 && !facingLeft && !isPaused)
         {
             FlipSprite();
         }
 
         // Jump when the jump key is pressed and dino is grounded
-        if (Input.GetKeyDown(jumpKey) && isGrounded)
+        if (Input.GetKeyDown(jumpKey) && isGrounded && !isPaused)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);  // Apply jump force
             isGrounded = false;
         }
 
         // Handle attack input
-        if (Input.GetKeyDown(attackKey))
+        if (Input.GetKeyDown(attackKey) && !isPaused)
         {
             Attack();
+        }
+
+        // Pause Game
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (isPaused)
+            {
+                isPaused = false;
+                pause.text = "";
+                quit.text = "";
+                // Debug.Log(isPaused);
+            }
+            else
+            {
+                isPaused = true;
+                pause.text = "Paused";
+                quit.text = "Esc to Quit";
+                // Debug.Log(isPaused);
+            }
+        }
+
+        // Quit Game
+        if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+        {
+            SceneManager.LoadScene("MenuScene");
         }
     }
 
