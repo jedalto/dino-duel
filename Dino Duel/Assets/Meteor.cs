@@ -31,7 +31,7 @@ public class Meteor : MonoBehaviour
             Destroy(gameObject);// Destroy fire boulder object
             
             Instantiate(explosion, transform.position, Quaternion.identity); //change fire boulder into explosion animation
-            Destroy(explosion); // Destroy the explosion object after impact
+            //Destroy(explosion); // Destroy the explosion object after impact
            
         }
 
@@ -40,7 +40,7 @@ public class Meteor : MonoBehaviour
             Destroy(gameObject);// Destroy fire boulder object
             
             Instantiate(explosion, transform.position, Quaternion.identity); //change fire boulder into explosion animation
-            Destroy(explosion); // Destroy the explosion object after impact
+            //Destroy(explosion); // Destroy the explosion object after impact
             
         }
 
@@ -49,7 +49,7 @@ public class Meteor : MonoBehaviour
             Destroy(gameObject);// Destroy fire boulder object
             
             Instantiate(explosion, transform.position, Quaternion.identity); //change fire boulder into explosion animation
-            Destroy(explosion); // Destroy the explosion object after impact
+            //Destroy(explosion); // Destroy the explosion object after impact
         }
 
         if(collision.CompareTag("Platform")){ // when bullet hits rock
@@ -57,7 +57,7 @@ public class Meteor : MonoBehaviour
             Destroy(gameObject);// Destroy fire boulder object
             
             Instantiate(explosion, transform.position, Quaternion.identity); //change fire boulder into explosion animation
-            Destroy(explosion); // Destroy the explosion object after impact
+            //Destroy(explosion); // Destroy the explosion object after impact
         }
     }  
 }
