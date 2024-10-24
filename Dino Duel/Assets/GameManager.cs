@@ -65,7 +65,18 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDied(int playerNumber)
     {
-        Debug.Log("Player died called");
+        Debug.Log("Player died");
+
+        // find both dinos and make invulnerable so they don't continue to take damage
+        DinoHealth[] allDinos = FindObjectsOfType<DinoHealth>();
+        foreach (DinoHealth dino in allDinos)
+        {
+            dino.SetInvulnerable(true);
+
+            // TODO::get movement script and disable attack ability
+            // maybe
+        }
+
         ShowWinPopupPanel(playerNumber);
     }
 
@@ -94,6 +105,14 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        // reset all dinos before restarting
+        DinoHealth[] allDinos = FindObjectsOfType<DinoHealth>();
+        foreach (DinoHealth dino in allDinos)
+        {
+            dino.SetInvulnerable(false);
+
+
+        }
         if (winPopupPanel != null)
         {
             winPopupPanel.SetActive(false);

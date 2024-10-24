@@ -14,6 +14,9 @@ public class DinoHealth : MonoBehaviour
     public Slider healthSlider;       // UI element to display health
     Animator animator;
 
+    private bool isInvulnerable = false;
+    private dinoMovement movementScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +24,7 @@ public class DinoHealth : MonoBehaviour
         UpdateHealthUI();               // Initialize health display
         SetSliderMaxValue();            // Initialize health bar value
         animator = GetComponent<Animator>();
+        movementScript = GetComponent<dinoMovement>();
     }
 
     // Update is called once per frame
@@ -31,6 +35,9 @@ public class DinoHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        // check if invulnerable before taking damage
+        if (isInvulnerable) return;
+
         currentHealth -= damage;      // Reduce health by damage amount
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);  // Prevent health from going below 0
 
@@ -63,6 +70,24 @@ public class DinoHealth : MonoBehaviour
 
         GameManager.Instance.PlayerDied(playerNumber); // Pass player number (1 or 2)
         Debug.Log("Dino is dead!");
+
+        // Disable movement if dead
+        if (movementScript != null)
+        {
+            // Set velocity to zero to stop any ongoing movement
+            if (movementScript.rb != null)
+            {
+                movementScript.rb.velocity = Vector2.zero;
+            }
+
+            // Disable movement script
+            movementScript.enabled = false;
+        }
+    }
+
+    public void SetInvulnerable(bool invulnerable)
+    {
+        isInvulnerable = invulnerable;
     }
 
     // Set maximum value of health bar to max dino health
