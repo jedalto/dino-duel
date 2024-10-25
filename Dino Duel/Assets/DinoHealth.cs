@@ -17,6 +17,9 @@ public class DinoHealth : MonoBehaviour
     private bool isInvulnerable = false;
     private dinoMovement movementScript;
 
+    [SerializeField] private AudioClip damageSound;
+    [SerializeField] private AudioClip death;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +51,7 @@ public class DinoHealth : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);  // Prevent health from going below 0
         targetSliderValue = currentHealth;  // set target value for slider
 
+        AudioSource.PlayClipAtPoint(damageSound, transform.position, 1f);
         if (currentHealth <= 0)
         {
             DinoDeath();              // Handle dino death
@@ -75,6 +79,7 @@ public class DinoHealth : MonoBehaviour
         // Logic for dino death, playing an animation
         animator.SetTrigger("Death");
 
+        AudioSource.PlayClipAtPoint(death, transform.position, 1f);
         GameManager.Instance.PlayerDied(playerNumber); // Pass player number (1 or 2)
         Debug.Log("Dino is dead!");
 
