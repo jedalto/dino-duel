@@ -980,7 +980,6 @@ MonoBehaviour:
   winPopupText: {fileID: 2024496711}
   rematchButton: {fileID: 0}
   quitButton: {fileID: 0}
-  soundClip: {fileID: 8300000, guid: 20efb294be412e4428e4d8a8d441adc1, type: 3}
 --- !u!4 &514929248
 Transform:
   m_ObjectHideFlags: 0
@@ -1912,6 +1911,7 @@ MonoBehaviour:
   runSound: {fileID: 999641205}
   jumpClip: {fileID: 8300000, guid: 52b88e5886aa0524c8efcfb27e8047f2, type: 3}
   shootClip: {fileID: 8300000, guid: e60d55569ba120d42859679c5e7fd485, type: 3}
+  buttonClip: {fileID: 8300000, guid: 20efb294be412e4428e4d8a8d441adc1, type: 3}
 --- !u!70 &999641202
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2584,6 +2584,7 @@ MonoBehaviour:
   runSound: {fileID: 1339373528}
   jumpClip: {fileID: 8300000, guid: 52b88e5886aa0524c8efcfb27e8047f2, type: 3}
   shootClip: {fileID: 8300000, guid: e60d55569ba120d42859679c5e7fd485, type: 3}
+  buttonClip: {fileID: 8300000, guid: 20efb294be412e4428e4d8a8d441adc1, type: 3}
 --- !u!50 &1339373521
 Rigidbody2D:
   serializedVersion: 4

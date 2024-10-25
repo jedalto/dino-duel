@@ -48,6 +48,8 @@ public class dinoMovement : MonoBehaviour
     [SerializeField] private AudioClip jumpClip;
     [SerializeField] private AudioClip shootClip;
 
+    [SerializeField] private AudioClip buttonClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -142,8 +144,10 @@ public class dinoMovement : MonoBehaviour
         // Pause Game
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            AudioSource.PlayClipAtPoint(buttonClip, transform.position, 1f);
             if (isPaused)
             {
+                AudioSource.PlayClipAtPoint(jumpClip, transform.position, 1f);
                 isPaused = false;
                 pause.text = "";
                 quit.text = "";
@@ -161,6 +165,7 @@ public class dinoMovement : MonoBehaviour
         // Quit Game
         if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
         {
+            AudioSource.PlayClipAtPoint(jumpClip, transform.position, 1f);
             SceneManager.LoadScene("MenuScene");
         }
     }

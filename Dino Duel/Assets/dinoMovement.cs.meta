@@ -8,9 +8,10 @@ MonoImporter:
   - laserBulletPrefab: {instanceID: 0}
   - gunPoint: {instanceID: 0}
   - groundCheck: {instanceID: 0}
-  - runningClip: {fileID: 8300000, guid: 90f25e50b0e7dbf49b85480ab1fe8579, type: 3}
+  - runSound: {instanceID: 0}
   - jumpClip: {fileID: 8300000, guid: 52b88e5886aa0524c8efcfb27e8047f2, type: 3}
   - shootClip: {fileID: 8300000, guid: e60d55569ba120d42859679c5e7fd485, type: 3}
+  - buttonClip: {fileID: 8300000, guid: 20efb294be412e4428e4d8a8d441adc1, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
