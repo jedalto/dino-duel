@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Text winPopupText;
     public Button rematchButton;
     public Button quitButton;
+    public VolcanoShake volcanoShake;
 
     private void Awake()
     {
@@ -60,6 +61,13 @@ public class GameManager : MonoBehaviour
         if (winPopupPanel != null)
         {
             winPopupPanel.SetActive(false);
+        }
+
+        // find VolcanoShake script and play volcanoShake()
+        volcanoShake = FindObjectOfType<VolcanoShake>();
+        if (volcanoShake != null)
+        {
+            volcanoShake.StartShaking();
         }
     }
 

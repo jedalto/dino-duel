@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 640751168943419979}
   - component: {fileID: 4798222232410322194}
   - component: {fileID: 8053289770136200313}
+  - component: {fileID: 217460196772450500}
   m_Layer: 0
   m_Name: volcano
   m_TagString: Untagged
@@ -100,3 +101,18 @@ MonoBehaviour:
   meteorPrefab: {fileID: 5918494805535178988, guid: 1386a123cb6878c488d312a5d8c4c65f, type: 3}
   dropInterval: 5
   dropHeight: 0
+  isPaused: 0
+--- !u!114 &217460196772450500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3854024642628332184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07cbdb065bd09b41a0c4fa797dadede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDuration: 4
+  shakeMagnitude: 0.05

@@ -411,7 +411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 372.4, y: 402}
+  m_AnchoredPosition: {x: 383, y: 402}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &160125872
@@ -980,6 +980,7 @@ MonoBehaviour:
   winPopupText: {fileID: 2024496711}
   rematchButton: {fileID: 0}
   quitButton: {fileID: 0}
+  volcanoShake: {fileID: 0}
 --- !u!4 &514929248
 Transform:
   m_ObjectHideFlags: 0
@@ -2244,7 +2245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -357.8, y: 402}
+  m_AnchoredPosition: {x: -345, y: 402}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1172464729
