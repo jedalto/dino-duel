@@ -43,6 +43,11 @@ public class dinoMovement : MonoBehaviour
     Text pause;
     Text quit;
 
+    // sound variables
+    public AudioSource runSound;
+    [SerializeField] private AudioClip jumpClip;
+    [SerializeField] private AudioClip shootClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +68,25 @@ public class dinoMovement : MonoBehaviour
         animator.SetBool("IsRunning", isRunning);
         
         animator.SetBool("Jump", (!isGrounded));
+
+        if(Input.GetKeyDown(moveLeftKey)) {
+            if(!runSound.isPlaying){
+                runSound.Play();
+            }
+        }
+        if(Input.GetKeyUp(moveLeftKey)) {
+            runSound.Stop();
+        }
+
+        if(Input.GetKeyDown(moveRightKey)) {
+            if(!runSound.isPlaying){
+                runSound.Play();
+            }
+        }
+        if(Input.GetKeyUp(moveRightKey)) {
+            runSound.Stop();
+        }
+        
     }
 
     void MoveDino()
@@ -74,12 +98,14 @@ public class dinoMovement : MonoBehaviour
             rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);  // Move left
             moveDirection = -1f;
             isRunning = true;
+
         }
         else if (Input.GetKey(moveRightKey) && canMoveRight && !isPaused)
         {
             rb.velocity = new Vector2(moveSpeed, rb.velocity.y);  // Move right
             moveDirection = 1f;
             isRunning = true;
+
         }
         else
         {
@@ -103,12 +129,14 @@ public class dinoMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);  // Apply jump force
             isGrounded = false;
+            AudioSource.PlayClipAtPoint(jumpClip, transform.position, 1f);
         }
 
         // Handle attack input
         if (Input.GetKeyDown(attackKey) && !isPaused)
         {
             Attack();
+            AudioSource.PlayClipAtPoint(shootClip, transform.position, 1f);
         }
 
         // Pause Game

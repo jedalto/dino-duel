@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public Button rematchButton;
     public Button quitButton;
 
+    [SerializeField] private AudioClip soundClip;
+
     private void Awake()
     {
         if (Instance == null)
@@ -49,12 +51,14 @@ public class GameManager : MonoBehaviour
         {
             rematchButton.onClick.RemoveAllListeners();  // Clear any existing listeners
             rematchButton.onClick.AddListener(RestartGame);  // Add new listener
+            rematchButton.onClick.AddListener(soundPlay);
         }
 
         if (quitButton != null)
         {
             quitButton.onClick.RemoveAllListeners();
             quitButton.onClick.AddListener(QuitToMenu);
+            quitButton.onClick.AddListener(soundPlay);
         }
 
         if (winPopupPanel != null)
@@ -145,5 +149,9 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("Error loading menu scene: " + e.Message);
         }
+    }
+
+    public void soundPlay(){
+        AudioSource.PlayClipAtPoint(soundClip, transform.position, 1f);
     }
 }

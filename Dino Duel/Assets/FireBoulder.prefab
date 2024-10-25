@@ -163,3 +163,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 5602518943361074772, guid: 8bf4dbf29d88c8e49855630ae1316fff, type: 3}
   explosionDuration: 1
+  soundClip: {fileID: 8300000, guid: 9f400c8993bba054e924c2da73fecdad, type: 3}
